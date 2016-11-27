@@ -3,8 +3,8 @@
 
 1. 比较版本号大小
 方法一:
-c = raw_input('first number: ')
-d = raw_input('second number: ')
+c = raw_input('first version number: ')
+d = raw_input('second version number: ')
 
 x, y = [0]*9, [0]*9
 
@@ -60,7 +60,7 @@ for i in n:
 print 'total is %d. ' %x
 '-------'
 方法三:
-x = int(raw_input('prime, enter the num more than 1: '))
+x = int(raw_input('enter the number more than 1: '))
 
 for a in range(1, x+1):
     for b in range(2, a):
@@ -95,7 +95,7 @@ class Input(object):
     def input_year(self):
         a = int(raw_input('input year: '))
         if not (a > 0):
-            raise Exception('must more than 0! ')
+            raise Exception('must greater than 0! ')
         return a
     def input_month(self):
         b = int(raw_input('input month: '))
