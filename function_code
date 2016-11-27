@@ -1,0 +1,31 @@
+1. 比较版本号大小
+方法一:
+c = raw_input('first number: ')
+d = raw_input('second number: ')
+
+x, y = [0]*9, [0]*9
+
+a = c.split('.')
+b = d.split('.')
+
+def update(m, n):
+    'm is a|b, n is x|y'
+    for i in range(len(m)):        
+        n[i] = int(m[i])
+
+def compare(q, p):
+    if cmp(q, p) == 1:
+        print '\n%s is bigger! ' %c
+    elif cmp(q, p) == -1:
+        print '\n%s is bigger! ' %d
+    else:
+        print 'equal!'
+        
+update(a, x)
+update(b, y)
+compare(x, y)
+-------
+方法二:
+from distutils.version import LooseVersion
+
+print LooseVersion("2.3.1") < LooseVersion("2.3.1a")
