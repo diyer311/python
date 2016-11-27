@@ -27,7 +27,7 @@ def compare(q, p):
 update(a, x)
 update(b, y)
 compare(x, y)
--------
+'-------'
 方法二:
 from distutils.version import LooseVersion
 
@@ -41,7 +41,7 @@ for i in range(2, 100):
             break
     else:
         print '%d is prime! ' %i
--------
+'-------'
 方法二:
 def odd(m):
     return m % 2 == 1
@@ -58,7 +58,7 @@ for i in n:
         print '%d is prime! ' %i
         x += 1
 print 'total is %d. ' %x
--------
+'-------'
 方法三:
 x = int(raw_input('prime, enter the num more than 1: '))
 
