@@ -19,7 +19,7 @@ v3 = Vector(5, 2)
 
 print v1 + v2 + v3
 
-2. 操作MySQL数据库示例:
+2. 操作mysql数据库示例:
 示例一
 import MySQLdb
 
@@ -131,5 +131,35 @@ except:
     db.rollback()
 
 db.close()
+
+3. socket通讯示例:
+服务端
+import socket
+
+s = socket.socket()
+host = socket.gethostname()
+port = 12345
+s.bind((host, port))
+
+s.listen(5)
+while True:
+    c, addr = s.accept()
+    print 'connection address: ', addr
+    c.send('welcome! ')
+    c.close()
+'-------'
+客户端
+import socket
+
+s = socket.socket()          
+host = socket.gethostname() 
+port = 12345               
+
+s.connect((host, port))
+print s.recv(1024)
+s.close()  
+
+
+
 
 
