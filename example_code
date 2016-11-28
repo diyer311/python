@@ -165,11 +165,11 @@ from email.mime.text import MIMEText
 from email.header import Header
 
 mail_host = 'smtp.189.cn'
-mail_user = '15955256609@189.cn'
+mail_user = 'xxxxxxx@189.cn'
 mail_pwd = 'xxxxxxx'
 
-sender = '15955256609@189.cn'
-receivers = ['52163012@qq.com', 'diyer311@163.com']
+sender = 'xxxxxxx@189.cn'
+receivers = ['xxxxxxx@qq.com', 'xxxxxxx@163.com']
 
 message = MIMEText('this is a test mail about python...', 'plain', 'utf-8')
 message['From'] = Header('teacher', 'utf-8')
