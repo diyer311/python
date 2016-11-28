@@ -35,5 +35,101 @@ print 'database version: %s' %data
 
 db.close()
 '-------'
+示例二
+import MySQLdb
+
+db = MySQLdb.connect('192.168.10.155', 'root', 'clt!2016', 'test')
+
+cursor = db.cursor()
+
+sql = '''
+insert into employee (first_name, last_name, age, sex, income)
+values ('mac', 'mohan', 20, 'm', 2000)
+'''
+
+try:
+    cursor.execute(sql)
+    db.commit()
+except:
+    db.rollback()
+
+db.close()
+'-------'
+示例三
+import MySQLdb
+
+db = MySQLdb.connect('192.168.10.155', 'root', 'clt!2016', 'test')
+
+cursor = db.cursor()
+
+sql = 'select * from employee where income > "%d"' %(1000)
+
+try:
+    cursor.execute(sql)
+    results = cursor.fetchall()
+    for row in results:
+        fname = row[0]
+        lname = row[1]
+        age = row[2]
+        sex = row[3]
+        income = row[4]
+        print 'fname=%s, lname=%s, age=%d, sex=%s, income=%d' %\
+              (fname, lname, age, sex, income)
+except:
+    print 'error: unable to fetch data.'
+
+db.close()
+'-------'
+示例四
+import MySQLdb
+
+db = MySQLdb.connect('192.168.10.155', 'root', 'clt!2016', 'test')
+
+cursor = db.cursor()
+
+sql = 'select * from employee where income > "%d"' %(1000)
+
+try:
+    cursor.execute(sql)
+    results = cursor.fetchall()
+    print 'end is %s' %results
+except:
+    print 'error: unable to fetch data.'
+
+db.close()
+'-------'
+示例五
+import MySQLdb
+
+db = MySQLdb.connect('192.168.10.155', 'root', 'clt!2016', 'test')
+
+cursor = db.cursor()
+
+sql = 'update employee set age = age + 1 where sex = "%s"' %('m')
+
+try:
+    cursor.execute(sql)
+    db.commit()
+except:
+    db.rollback()
+
+db.close()
+'-------'
+示例六
+import MySQLdb
+
+db = MySQLdb.connect('192.168.10.155', 'root', 'clt!2016', 'test')
+
+cursor = db.cursor()
+
+sql = 'delete from employee where age > "%d"' %(20)
+
+try:
+    cursor.execute(sql)
+    db.commit()
+except:
+    db.rollback()
+
+db.close()
 
 
