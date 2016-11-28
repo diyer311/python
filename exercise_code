@@ -168,3 +168,13 @@ for i in range(1, 10):
     if m > 1:
         print '', '\n', '---------'
 
+10. 打印斐波那契数列
+x = int(raw_input('print the fibonacci sequence less than: '))
+
+def fib(n):
+    a, b = 0, 1
+    while b < n:
+        a, b = b, a + b
+        print a,
+
+fib(x)
