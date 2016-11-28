@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-1. __add__方法示例:
+1. __add__方法示例
 class Vector(object):
     def __init__(self, a, b):
         self.a = a
@@ -19,8 +19,8 @@ v3 = Vector(5, 2)
 
 print v1 + v2 + v3
 
-2. 操作mysql数据库示例:
-示例一
+2. 操作mysql数据库示例
+示例一:
 import MySQLdb
 
 db = MySQLdb.connect('192.168.0.1', 'root', 'xxxxxxx', 'test')
@@ -35,7 +35,7 @@ print 'database version: %s' %data
 
 db.close()
 '-------'
-示例二
+示例二:
 import MySQLdb
 
 db = MySQLdb.connect('192.168.0.1', 'root', 'xxxxxxx', 'test')
@@ -55,7 +55,7 @@ except:
 
 db.close()
 '-------'
-示例三
+示例三:
 import MySQLdb
 
 db = MySQLdb.connect('192.168.0.1', 'root', 'xxxxxxx', 'test')
@@ -80,7 +80,7 @@ except:
 
 db.close()
 '-------'
-示例四
+示例四:
 import MySQLdb
 
 db = MySQLdb.connect('192.168.0.1', 'root', 'xxxxxxx', 'test')
@@ -98,7 +98,7 @@ except:
 
 db.close()
 '-------'
-示例五
+示例五:
 import MySQLdb
 
 db = MySQLdb.connect('192.168.0.1', 'root', 'xxxxxxx', 'test')
@@ -115,7 +115,7 @@ except:
 
 db.close()
 '-------'
-示例六
+示例六:
 import MySQLdb
 
 db = MySQLdb.connect('192.168.0.1', 'root', 'xxxxxxx', 'test')
@@ -132,8 +132,8 @@ except:
 
 db.close()
 
-3. socket通讯示例:
-服务端
+3. socket通讯示例
+服务端:
 import socket
 
 s = socket.socket()
@@ -148,7 +148,7 @@ while True:
     c.send('welcome! ')
     c.close()
 '-------'
-客户端
+客户端:
 import socket
 
 s = socket.socket()          
@@ -159,7 +159,7 @@ s.connect((host, port))
 print s.recv(1024)
 s.close()  
 
-4. 发送邮件示例:
+4. 发送邮件示例
 import smtplib
 from email.mime.text import MIMEText
 from email.header import Header
@@ -186,8 +186,8 @@ try:
 except smtplib.SMTPException:
     print 'some error occoured!'
 
-5. 装饰器示例:
-示例一
+5. 装饰器示例
+示例一:
 def log(func):
     def wrapper(*args, **kw):
         print 'call %s():' % func.__name__
@@ -200,7 +200,7 @@ def now():
 
 now()
 '-------'
-示例二
+示例二:
 def makebold(fn):
     def wrapped():
         return "<b>" + fn() + "</b>"
