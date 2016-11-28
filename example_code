@@ -159,6 +159,33 @@ s.connect((host, port))
 print s.recv(1024)
 s.close()  
 
+4. 发送邮件示例:
+import smtplib
+from email.mime.text import MIMEText
+from email.header import Header
+
+mail_host = 'smtp.189.cn'
+mail_user = '15955256609@189.cn'
+mail_pwd = 'xxxxxxx'
+
+sender = '15955256609@189.cn'
+receivers = ['52163012@qq.com', 'diyer311@163.com']
+
+message = MIMEText('this is a test mail about python...', 'plain', 'utf-8')
+message['From'] = Header('teacher', 'utf-8')
+message['To'] = Header('test', 'utf-8')
+message['Subject'] = Header('a python test mail', 'utf-8')
+
+try:
+    mail = smtplib.SMTP()
+    mail.connect(mail_host, 25)
+#   mail.set_debuglevel(1)
+    mail.login(mail_user, mail_pwd)
+    mail.sendmail(sender, receivers, message.as_string())
+    print 'send success!'
+except smtplib.SMTPException:
+    print 'some error occoured!'
+
 
 
 
