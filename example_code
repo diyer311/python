@@ -19,10 +19,11 @@ v3 = Vector(5, 2)
 
 print v1 + v2 + v3
 
-2. 连接MySQL数据库并获取版本号示例:
+2. 操作MySQL数据库示例:
+示例一
 import MySQLdb
 
-db = MySQLdb.connect('192.168.10.155', 'root', 'clt!2016', 'test')
+db = MySQLdb.connect('192.168.0.1', 'root', 'xxxxxxx', 'test')
 
 cursor = db.cursor()
 
@@ -33,4 +34,6 @@ data = cursor.fetchone()
 print 'database version: %s' %data
 
 db.close()
+'-------'
+
 
