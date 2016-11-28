@@ -18,3 +18,19 @@ v2 = Vector(5, -2)
 v3 = Vector(5, 2)
 
 print v1 + v2 + v3
+
+2. 连接MySQL数据库并获取版本号示例:
+import MySQLdb
+
+db = MySQLdb.connect('192.168.10.155', 'root', 'clt!2016', 'test')
+
+cursor = db.cursor()
+
+cursor.execute('select version()')
+
+data = cursor.fetchone()
+
+print 'database version: %s' %data
+
+db.close()
+
