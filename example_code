@@ -38,7 +38,7 @@ db.close()
 示例二
 import MySQLdb
 
-db = MySQLdb.connect('192.168.10.155', 'root', 'clt!2016', 'test')
+db = MySQLdb.connect('192.168.0.1', 'root', 'xxxxxxx', 'test')
 
 cursor = db.cursor()
 
@@ -58,7 +58,7 @@ db.close()
 示例三
 import MySQLdb
 
-db = MySQLdb.connect('192.168.10.155', 'root', 'clt!2016', 'test')
+db = MySQLdb.connect('192.168.0.1', 'root', 'xxxxxxx', 'test')
 
 cursor = db.cursor()
 
@@ -83,7 +83,7 @@ db.close()
 示例四
 import MySQLdb
 
-db = MySQLdb.connect('192.168.10.155', 'root', 'clt!2016', 'test')
+db = MySQLdb.connect('192.168.0.1', 'root', 'xxxxxxx', 'test')
 
 cursor = db.cursor()
 
@@ -101,7 +101,7 @@ db.close()
 示例五
 import MySQLdb
 
-db = MySQLdb.connect('192.168.10.155', 'root', 'clt!2016', 'test')
+db = MySQLdb.connect('192.168.0.1', 'root', 'xxxxxxx', 'test')
 
 cursor = db.cursor()
 
@@ -118,7 +118,7 @@ db.close()
 示例六
 import MySQLdb
 
-db = MySQLdb.connect('192.168.10.155', 'root', 'clt!2016', 'test')
+db = MySQLdb.connect('192.168.0.1', 'root', 'xxxxxxx', 'test')
 
 cursor = db.cursor()
 
