@@ -211,3 +211,22 @@ while x is not exit:
                 print '{} is a prime number! \n'.format(x)
 else:
     print 'ByeBye! '
+--------------------------------------
+def showcase(n):
+    global list1, list2
+    list1 = []
+    list2 = []
+    for i in range(2, n+1):
+        for j in range(2, i):
+            if i % j == 0:
+                break
+        else:
+            list1.append(i)
+    while n not in list1:
+        for k in range(2, n+1):
+            if n % k == 0:
+                n /= k
+                list2.append(k)
+                break
+    else:
+        list2.append(n)
