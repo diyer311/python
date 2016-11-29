@@ -210,10 +210,20 @@ def makeitalic(fn):
     def wrapped():
         return "<i>" + fn() + "</i>"
     return wrapped
- 
+
 @makebold
 @makeitalic
 def hello():
     return "hello world"
- 
+
 print hello()
+
+6. 闭包示例
+def make_add(x):
+    def add(y):
+        return x + y
+    return add
+
+z = make_add(23)
+
+print z(100)
