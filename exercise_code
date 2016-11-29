@@ -178,3 +178,36 @@ def fib(n):
         print a,
 
 fib(x)
+
+11. 分解质因数
+def showcase(n):
+    print '{} ='.format(n),
+    while n is not 1:
+        for j in xrange(2, n+1):
+            if n % j == 0:
+                n /= j
+                if n == 1: 
+                    print j, '\n' 
+                else:
+                    print '{} *'.format(j),
+                break
+
+x = 0
+
+while x is not exit:
+    try:
+        x = input('enter a number which can prime factorization(input exit to leave! ): ')
+    except:
+        print 'please input a number! \n'
+    else:
+        if not isinstance(x, int) or x <= 1:
+            print 'please input a positive integer greater than one! \n'
+        else:
+            for i in range(2, x):
+                if x % i == 0:
+                    showcase(x)
+                    break
+            else:
+                print '{} is a prime number! \n'.format(x)
+else:
+    print 'ByeBye! '
