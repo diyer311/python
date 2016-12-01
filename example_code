@@ -227,3 +227,14 @@ def make_add(x):
 z = make_add(23)
 
 print z(100)
+
+7. 已指定格式打印当前时间
+import time
+
+print time.strftime('%Y-%m-%d %H:%M:%S', time.localtime())
+
+8. 复制列表
+a = [1, 2, 3]
+b = a[:]
+
+print b
