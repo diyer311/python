@@ -242,3 +242,19 @@ while x is not exit:
                 print '{} is a prime number! \n'.format(x)
 else:
     print 'ByeBye! '
+    
+10. 统计输入字符串中各类字符的数目
+while True:
+    alpha = digit = space = others = 0
+    x = raw_input('input something: ')
+    for i in x:
+        if i.isalpha():
+            alpha += 1
+        elif i.isdigit():
+            digit += 1
+        elif i.isspace():
+            space += 1
+        else:
+            others += 1
+    print 'alpha=%r, digit=%r, space=%r, others=%r' %(alpha, digit, space, others)
+    del alpha, digit, space, others
