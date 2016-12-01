@@ -228,7 +228,7 @@ z = make_add(23)
 
 print z(100)
 
-7. 已指定格式打印日期和时间
+7. 已指定格式打印日期和时间示例
 import time
 import datetime
 
@@ -245,7 +245,7 @@ print(birthday_nextday.strftime('%d/%m/%Y'))
 birthday_nextyear = birthday.replace(year = birthday.year + 1)
 print(birthday_nextyear.strftime('%d/%m/%Y'))
 
-8. 复制列表
+8. 复制列表示例
 a = [1, 2, 3]
 b = a[:]
 
