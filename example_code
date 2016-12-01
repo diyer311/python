@@ -228,10 +228,22 @@ z = make_add(23)
 
 print z(100)
 
-7. 已指定格式打印当前时间
+7. 已指定格式打印日期和时间
 import time
+import datetime
 
 print time.strftime('%Y-%m-%d %H:%M:%S', time.localtime())
+
+print(datetime.date.today().strftime('%d/%m/%Y'))
+
+birthday = datetime.date(2000, 12, 22)
+print(birthday.strftime('%d/%m/%Y'))
+
+birthday_nextday = birthday + datetime.timedelta(days=1)
+print(birthday_nextday.strftime('%d/%m/%Y'))
+
+birthday_nextyear = birthday.replace(year = birthday.year + 1)
+print(birthday_nextyear.strftime('%d/%m/%Y'))
 
 8. 复制列表
 a = [1, 2, 3]
