@@ -250,3 +250,11 @@ a = [1, 2, 3]
 b = a[:]
 
 print b
+
+9. 滤除列表中空字符串示例
+a = ['A', '', 'B', None, 'C', '  ']
+
+def not_empty(x):
+    return x and x.strip()
+
+print filter(not_empty, a)
