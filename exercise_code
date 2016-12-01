@@ -70,7 +70,7 @@ for a in range(1, x+1):
     else:
         print a, 'is the prime! '
 
-5. 冒泡排序算法
+3. 冒泡排序算法
 array = [1, 2, 5, 3, 6, 8, 4]
 
 for i in range(len(array) - 1, 0, -1):
@@ -79,7 +79,7 @@ for i in range(len(array) - 1, 0, -1):
             array[j], array[j + 1] = array[j + 1], array[j]
 print array
 
-6. 计算指定日期为该年的第几天(含判断闰年)
+4. 计算指定日期为该年的第几天(含判断闰年)
 class Input(object):
     def input_year(self):
         a = int(raw_input('input year: '))
@@ -116,7 +116,7 @@ else:
         total += months[i]
     print total+day
 
-7. 由指定数字组成无重复三位数
+5. 由指定数字组成无重复三位数
 list = [str(x) + str(y) + str(z) \
 for x in range(1, 5) for y in range(1, 5) for z in range(1, 5) \
 if (x != y) and (x != z) and (y != z)]
@@ -124,7 +124,7 @@ if (x != y) and (x != z) and (y != z)]
 for item in list:
     print item
 
-8. 录入并显示员工信息
+6. 录入并显示员工信息
 class Employee(object):
     emp_count = 0
 
@@ -147,7 +147,7 @@ emp2.display_employee()
 
 print 'total employee %d' %Employee.emp_count
 
-9. 打印乘法口诀表
+7. 打印乘法口诀表
 for i in range(1, 10):
     n = i
     m = 10
@@ -157,7 +157,7 @@ for i in range(1, 10):
     if m > 1:
         print '', '\n', '---------'
 
-10. 打印斐波那契数列
+8. 打印斐波那契数列
 x = int(raw_input('print the fibonacci sequence less than: '))
 
 def fib(n):
@@ -168,7 +168,7 @@ def fib(n):
 
 fib(x)
 
-11. 分解质因数
+9. 分解质因数
 方法一:
 def showcase(n):
     print '{} ='.format(n),
