@@ -70,17 +70,6 @@ for a in range(1, x+1):
     else:
         print a, 'is the prime! '
 
-3. 已指定格式打印当前时间
-import time
-
-print time.strftime('%Y-%m-%d %H:%M:%S', time.localtime())
-
-4. 复制列表
-a = [1, 2, 3]
-b = a[:]
-
-print b
-
 5. 冒泡排序算法
 array = [1, 2, 5, 3, 6, 8, 4]
 
