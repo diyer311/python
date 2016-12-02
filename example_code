@@ -258,3 +258,9 @@ def not_empty(x):
     return x and x.strip()
 
 print filter(not_empty, a)
+
+10. 格式化输出format示例
+x = [1, 3, 5, 7, 5, 3, 1]
+
+for i in range(7):
+    print '{:-^7}'.format('*'*x[i])
