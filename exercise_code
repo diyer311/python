@@ -258,3 +258,25 @@ while True:
             others += 1
     print 'alpha=%r, digit=%r, space=%r, others=%r' %(alpha, digit, space, others)
     del alpha, digit, space, others
+
+11. 求1!+2!+3!+...+20!之和
+方法一:
+a = 1
+s = []
+
+for i in range(1, 21):
+    a *= i
+    s.append(a)
+print '1! + 2! + ... + 20! = %d' %sum(s)
+'-------'
+方法二:
+n = 1
+s = []
+
+while n < 21:
+    a = 1
+    for i in range(1, n+1):
+        a *= i
+    s.append(a)
+    n += 1
+print '1! + 2! + ... + 20! = %d' %sum(s)
