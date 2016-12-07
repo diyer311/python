@@ -264,3 +264,20 @@ x = [1, 3, 5, 7, 5, 3, 1]
 
 for i in range(7):
     print '{:-^7}'.format('*'*x[i])
+    
+11. 用递归计算阶层示例
+def factorial(i):
+    sum = 0
+    if i == 1:
+        sum = 1
+    else:
+        sum = i * factorial(i - 1)
+    return sum
+
+while True:
+    x = int(raw_input('enter a number to show it\'s factorial: '))
+
+    if 0 < x < 30:
+        print factorial(x)
+    else:
+        print 'between 0 and 30! '
