@@ -267,7 +267,6 @@ for i in range(7):
     
 11. 用递归计算阶层示例
 def factorial(i):
-    sum = 0
     if i == 1:
         sum = 1
     else:
