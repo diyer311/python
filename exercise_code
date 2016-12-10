@@ -280,3 +280,12 @@ while n < 21:
     s.append(a)
     n += 1
 print '1! + 2! + ... + 20! = %d' %sum(s)
+
+12. 输入一个n位数并从高位到低位依次打印
+while True:
+    x = int(raw_input('enter an integer: '))
+
+    for i in range(len(str(x)))[::-1]:
+        place = x / pow(10, i) % 10
+        print place,
+    print ''
