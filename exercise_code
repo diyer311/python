@@ -289,3 +289,15 @@ while True:
         place = x / pow(10, i) % 10
         print place,
     print ''
+
+13. 输入一个整数并判断其是否为回文数
+while True:
+    x = int(raw_input('please input an integer: '))
+    n = str(x)
+
+    for i in range(len(n)/2):
+        if n[i] != n[-i - 1]:
+            print '%d is not a palindrome! ' %x
+            break
+    else:
+        print '%d is a palindrome! ' %x
