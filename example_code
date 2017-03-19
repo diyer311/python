@@ -201,6 +201,66 @@ def now():
 now()
 '-------'
 示例二:
+debug = True
+
+def print_args(funcA):
+    def funcB(*args, **kwargs):
+        if debug:
+            print(args, kwargs)
+        return funcA(*args, **kwargs)
+    return funcB
+
+@print_args
+def make_list(a, b):
+    return [a, b]
+
+@print_args
+def add(a, b, c=3):
+    return a + b + c
+
+print make_list(1, 2)
+print add(1, 2, 3)    
+'-------'
+示例三:
+class Cat():
+
+    total_count=0
+
+    def __init__(self, name):
+        self.name = name
+        self.born_one()
+
+    def say_hello(self):
+        print("i'm %s, hello." %self.name)
+
+    @classmethod
+    def born_one(cls):
+        cls.total_count += 1
+
+tom = Cat("tom")
+lily = Cat("lily")
+
+tom.say_hello()
+lily.say_hello()
+
+print(Cat.total_count)    
+'-------'
+示例四:
+class Dog():
+
+    def __init__(self, name):
+        self.name = name     
+
+    def say_hello(self):
+        print("i'm %s, hello." %self.name)
+
+    @staticmethod
+    def get_leg_count():
+        return 4
+
+print(Dog.get_leg_count())    
+'-------'
+示例五:
 def makebold(fn):
     def wrapped():
         return "<b>" + fn() + "</b>"
