@@ -1,0 +1,167 @@
+import os
+import subprocess
+import shutil
+import datetime
+import pipes
+import getLogger as gl
+def IsRemoteFileExist(remoteHost,filePath):
+        resp = subprocess.call(['ssh', remoteHost, 'test -e ' + pipes.quote(filePath)])
+        flag = False
+        if resp == 0:
+                flag = True
+        else:
+                flag = False
+        return flag
+
+
+def external_cmd(cmd, msg_in=''):
+        gl.log.info('The command is :'+cmd)
+        try:
+                proc = subprocess.Popen(cmd, shell=True, stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE,)
+                stdout_value, stderr_value = proc.communicate(msg_in)
+		gl.log.info('stdout_value:'+stdout_value+' stderr_value:'+stderr_value)
+                return stdout_value, stderr_value
+        except ValueError, err:
+                gl.log.error("IOError: "+ err)
+                os._exit(1)
+
+def dealFail(errorMessage):
+	buildstatus = 'fail'
+        returnInfo = {'status':buildstatus,'error':errorMessage}
+        gl.log.info('get return value fail')
+        print returnInfo
+        os._exit(1)
+--------------------------------------------------
+#!/usr/bin/env python
+#-*- coding:utf-8 -*-
+import sys
+sys.path.append(r'/data/bin/jenkinsJobPython')
+import jenkins
+import config.mod_config as mc
+import os
+import getLogger
+
+reload(sys)
+sys.setdefaultencoding('utf8')
+
+INIT_CONFIG_XML = '''<?xml version='1.0' encoding='UTF-8'?>
+<project>
+  <keepDependencies>false</keepDependencies>
+  <properties/>
+  <scm class='jenkins.scm.NullSCM'/>
+  <canRoam>true</canRoam>
+  <disabled>false</disabled>
+  <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
+  <triggers class='vector'/>
+  <concurrentBuild>false</concurrentBuild>
+  <builders/>
+  <publishers/>
+  <buildWrappers/>
+</project>'''
+
+SCM_SVN_CONFIG_XML = ''' <scm class="hudson.scm.SubversionSCM" plugin="subversion@2.5">
+    <locations>
+      <hudson.scm.SubversionSCM_-ModuleLocation>
+        <remote></remote>
+        <credentialsId>'''+mc.getConfig("jenkins", "credentialsid")+'''</credentialsId>
+        <local>.</local>
+        <depthOption>infinity</depthOption>
+        <ignoreExternalsOption>true</ignoreExternalsOption>
+      </hudson.scm.SubversionSCM_-ModuleLocation>
+    </locations>
+    <excludedRegions></excludedRegions>
+    <includedRegions></includedRegions>
+    <excludedUsers></excludedUsers>
+    <excludedRevprop></excludedRevprop>
+    <excludedCommitMessages></excludedCommitMessages>
+    <workspaceUpdater class="hudson.scm.subversion.UpdateUpdater"/>
+    <ignoreDirPropChanges>false</ignoreDirPropChanges>
+    <filterChangelog>false</filterChangelog>
+  </scm>'''
+
+BUILD_MAVEN_CONFIG_XML = '''<builders>
+    <hudson.tasks.Maven>
+      <targets></targets>
+      <mavenName></mavenName>
+      <usePrivateRepository>false</usePrivateRepository>
+      <settings class="jenkins.mvn.DefaultSettingsProvider"/>
+      <globalSettings class="jenkins.mvn.DefaultGlobalSettingsProvider"/>
+    </hudson.tasks.Maven>
+  </builders>'''
+
+BUILD_ANT_CONFIG_XML = '''<builders>
+    <hudson.tasks.Ant plugin="ant@1.2">
+      <targets></targets>
+      <antName></antName>
+    </hudson.tasks.Ant>
+  </builders>'''
+
+
+def isArgvNull(*argv):
+	flag = False
+	for ar in argv:
+		if ar == '':
+			getLogger.log.error(' something maybe null!:')
+			print 'Error:some argvs maybe null!'
+			flag = True
+			return flag
+                	os._exit(1)	
+	return flag
+
+#创建配置文件：build 目前仅支持 ant 、maven
+
+def getConfigStr(svnPath,buildStyle,toolVersion,packageStyle=''):
+	getLogger.log.info('svnPath:'+svnPath)
+	getLogger.log.info('buildStyle:'+buildStyle)
+	getLogger.log.info('toolVersion:'+toolVersion)
+	getLogger.log.info('packageStyle:'+packageStyle)	
+	if isArgvNull(svnPath,buildStyle,toolVersion):
+		os._exit(1)
+	else:
+		buildResultStr = ''
+        	if buildStyle == 'maven':
+                	if packageStyle == '':
+                        	getLogger.log.error('when choose maven for buildStyle, packageStyle can\'t be null!')
+				print 'ERROR:need packageStyle war/ant for maven build!'
+                        	os._exit(1)
+                	buildResultStr = getBuildMavenStr(toolVersion,packageStyle)
+        	elif buildStyle == 'ant':
+                	buildResultStr = getBuildAntStr(toolVersion)
+        	scmResultStr = getScmSvnStr(svnPath)
+        	configStr = INIT_CONFIG_XML.replace("<scm class='jenkins.scm.NullSCM'/>",scmResultStr).replace("<builders/>",buildResultStr)
+        	return configStr
+
+def getScmSvnStr(svnPath):
+	getLogger.log.info('svnPath:'+svnPath)
+	if isArgvNull(svnPath) :
+		os._exit(1)
+	else:
+        	scmxmlStr = r'<remote>'+svnPath+r'</remote>'
+        	scmResultStr = SCM_SVN_CONFIG_XML.replace('<remote></remote>',scmxmlStr)
+        	return scmResultStr
+
+def getBuildMavenStr(toolVersion,packageStyle):
+	getLogger.log.info('toolVersion:'+toolVersion)
+	getLogger.log.info('packageStyle:'+packageStyle)		
+	if isArgvNull(toolVersion,packageStyle):
+		os._exit(1) 
+       	else:
+		target = ''
+        	if packageStyle == 'war':
+                	target = 'clean compile war:war'
+        	elif packageStyle == 'jar':
+                	target = 'clean install'
+        	mavenStr = r'<mavenName>'+toolVersion+r'</mavenName>'
+        	targetStr = r'<targets>'+target+r'</targets>'
+        	buildResultStr= BUILD_MAVEN_CONFIG_XML.replace('<mavenName></mavenName>',mavenStr).replace('<targets></targets>',targetStr)
+        	return buildResultStr
+
+def getBuildAntStr(toolVersion):
+	getLogger.log.info('toolVersion:'+toolVersion)
+	if isArgvNull(toolVersion):
+                os._exit(1)
+	else:		
+        	antStr = r'<antName>'+toolVersion+r'</antName>'
+        	buildResultStr = BUILD_ANT_CONFIG_XML.replace('<antName></antName>',antStr)
+        	return buildResultStr
+
