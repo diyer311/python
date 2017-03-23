@@ -164,4 +164,61 @@ def getBuildAntStr(toolVersion):
         	antStr = r'<antName>'+toolVersion+r'</antName>'
         	buildResultStr = BUILD_ANT_CONFIG_XML.replace('<antName></antName>',antStr)
         	return buildResultStr
+---------------------------------------------------
+#encoding:utf-8
 
+import sys
+sys.path.append(r'/data/bin/jenkinsJobPython')
+import logging.config
+from logging.handlers import RotatingFileHandler
+import ConfigParser
+import os
+import config.mod_config as mc
+import datetime
+
+#日志设置
+def logger(logPath):
+	logFile = getLogFile(logPath)
+	logger = logging.getLogger(logFile)
+    	Rthandler = RotatingFileHandler(logFile, maxBytes=maxbytes, backupCount=backupcount)
+    #这里来设置日志的级别
+    #CRITICAl    50
+    #ERROR    40
+    #WARNING    30
+    #INFO    20
+    #DEBUG    10
+    #NOSET    0
+    #写入日志时，小于指定级别的信息将被忽略
+	logger.setLevel(level)
+	formatter = logging.Formatter(format)
+	Rthandler.setFormatter(formatter)
+	logger.addHandler(Rthandler)
+	return logger
+
+
+def getLogFile(logPath):
+	now = datetime.datetime.now()
+	isDirExistOrMkdir(logPath)
+	logfile = now.strftime('makeJenkinsJob'+'_%Y%m%d_'+'log')
+	logfilePath = os.path.join(logPath,logfile)
+	return logfilePath
+
+def isDirExistOrMkdir (dirName):
+        if not os.path.exists(dirName):
+                os.makedirs(dirName)
+        else:
+                exit
+def getLogStart (message):
+        str1=''
+        for i in range (0,20):
+                str1 += '#'
+        ms = str1+message+str1
+        return ms
+
+
+format       	= mc.getConfig("log", "format").replace('@', '%')
+level         	= int(mc.getConfig("log", "level"))
+backupcount  	= int(mc.getConfig("log", "backupcount"))
+maxbytes     	= int(mc.getConfig("log", "maxbytes"))
+logPath 	= mc.getConfig("log", "logPath")
+log = logger(logPath)
