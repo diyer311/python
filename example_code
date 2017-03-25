@@ -277,6 +277,39 @@ def hello():
     return "hello world"
 
 print hello()
+'-------'
+示例六:
+def log(prefix):
+    def log_decorator(f):
+        def wrapper(*args, **kw):
+            print '[%s] %s()...' %(prefix, f.__name__)
+            return f(*args, **kw)
+        return wrapper
+    return log_decorator
+
+@log('DEBUG')
+def test():
+    pass
+print test()
+'-------'
+示例七:
+def say(worker):
+    print 'I am worker %s' %worker
+    def dec(fn):
+        def wrapper(*args, **kwargs):
+            print 'staring..'
+            fn(*args, **kwargs)
+            print 'end.'
+        return wrapper
+    return dec
+
+@say("main")
+def main(n):
+    for i in range(n):
+        print i*2
+
+if __name__ == "__main__":
+    main(5)    
 
 6. 闭包示例
 def make_add(x):
