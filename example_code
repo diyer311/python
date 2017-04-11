@@ -189,9 +189,9 @@ except smtplib.SMTPException:
 5. 装饰器示例
 示例一:
 def log(func):
-    def wrapper(*args, **kw):
+    def wrapper(*args, **kwargs):
         print 'call %s():' % func.__name__
-        return func(*args, **kw)
+        return func(*args, **kwargs)
     return wrapper
 
 @log
@@ -222,9 +222,9 @@ print make_list(1, 2)
 print add(1, 2, 3)    
 '-------'
 示例三:
-class Cat():
+class Cat(object):
 
-    total_count=0
+    total_count = 0
 
     def __init__(self, name):
         self.name = name
@@ -246,7 +246,7 @@ lily.say_hello()
 print(Cat.total_count)    
 '-------'
 示例四:
-class Dog():
+class Dog(object):
 
     def __init__(self, name):
         self.name = name     
