@@ -373,3 +373,32 @@ while True:
         print factorial(x)
     else:
         print 'between 0 and 30! '
+
+12. Python设计模式-外观模式示例
+class ModuleOne(object):
+    def Create(self): 
+        print 'create module one instance'
+    def Delete(self): 
+        print 'delete module one instance'
+    
+class ModuleTwo(object): 
+    def Create(self): 
+        print 'create module two instance'
+    def Delete(self): 
+        print 'delete module two instance'
+    
+class Facade(object): 
+    def __init__(self): 
+        self.module_one = ModuleOne() 
+        self.module_two = ModuleTwo() 
+    def create_both(self): 
+        self.module_one.Create() 
+        self.module_two.Create() 
+    def delete_both(self): 
+        self.module_one.Delete() 
+        self.module_two.Delete()
+
+if __name__ == '__main__':
+    facade = Facade()
+    facade.create_both()
+    facade.delete_both()
