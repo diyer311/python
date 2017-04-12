@@ -430,4 +430,4 @@ class Factory(object):
 
 if __name__ == '__main__':
     factory = Factory()
-    person = factory.get_person("Tom", "M")
+    factory.get_person("Tom", "M")
