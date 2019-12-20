@@ -164,8 +164,8 @@ blockchain = Blockchain()
 @app.route('/mine', methods=['GET'])
 def mine_block():
     latest_block = blockchain.last_block
-    last_proof = latest_block['proof']
-    proof = blockchain.proof_of_work(last_proof)
+    latest_proof = latest_block['proof']
+    proof = blockchain.proof_of_work(latest_proof)
 
     blockchain.new_transaction(
         sender='0',
