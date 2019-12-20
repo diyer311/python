@@ -63,6 +63,33 @@ class Blockchain(object):
 
         return proof
 
+    @staticmethod
+    def valid_proof(last_proof, proof):
+        """
+        :param last_proof: <int> Previous Proof
+        :param proof: <int> Current Proof
+        :return: <bool> True if correct, False if not.
+        """
+
+        guess = f'{last_proof}{proof}'.encode()
+        guess_hash = hashlib.sha256(guess).hexdigest()
+
+        return guess_hash[:4] == '0000'
+
+    @staticmethod
+    def compute_hash(block):
+        """
+        :param block: <dict> Block
+        :return: <str>
+        """
+
+        block_string = json.dumps(block, sort_keys=True).encode()
+        return hashlib.sha256(block_string).hexdigest()
+
+    @property
+    def last_block(self):
+        return self.chain[-1]
+
     def register_node(self, address):
         """
         Add a new node to the list of nodes
@@ -113,7 +140,7 @@ class Blockchain(object):
         for node in neighbours:
             response = requests.get(f'http://{node}/chain')
 
-            if response.status_code ==200:
+            if response.status_code == 200:
                 length = response.json()['length']
                 chain = response.json()['chain']
 
@@ -126,33 +153,6 @@ class Blockchain(object):
             return True
 
         return False
-
-    @staticmethod
-    def valid_proof(last_proof, proof):
-        """
-        :param last_proof: <int> Previous Proof
-        :param proof: <int> Current Proof
-        :return: <bool> True if correct, False if not.
-        """
-
-        guess = f'{last_proof}{proof}'.encode()
-        guess_hash = hashlib.sha256(guess).hexdigest()
-
-        return guess_hash[:4] == '0000'
-
-    @staticmethod
-    def compute_hash(block):
-        """
-        :param block: <dict> Block
-        :return: <str>
-        """
-
-        block_string = json.dumps(block, sort_keys=True).encode()
-        return hashlib.sha256(block_string).hexdigest()
-
-    @property
-    def last_block(self):
-        return self.chain[-1]
 
 
 app = Flask(__name__)
