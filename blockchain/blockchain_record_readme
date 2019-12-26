@@ -1,0 +1,29 @@
+获取链信息
+curl -X GET "http://127.0.0.1:5000/chain"
+
+新增一条记录
+curl -X POST "http://127.0.0.1:5000/record/new" -H "Content-Type: application/json" -d'
+{
+  "name": "张三",
+  "type": "远程支持",
+  "scope": "数据库",
+  "detail": "解决数据库启动异常问题",
+  "region": "杭州",
+  "tag": "MySQL",
+  "time": "2019-12-22",
+  "duration": "1H",
+  "product": "测试项目",
+  "department": "软件研发中心-研发一部",
+  "contact": "李四"
+}
+'
+
+注册一个新的节点
+curl -X POST "http://127.0.0.1:5000/nodes/register" -H "Content-Type: application/json" -d'
+{
+  "nodes": ["http://192.168.0.1:5000"]
+}
+'
+
+对该节点的权威性进行校验
+curl -X GET "http://127.0.0.1:5000/nodes/resolve"
