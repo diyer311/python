@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 """
-__version__ = 'alpha'
+__version__ = '1.0.0'
 __date__ = '2017-08-27'
 __author__ = 'Ding Yi, <dingyi@dingyix.com>'
 """
