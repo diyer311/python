@@ -67,3 +67,4 @@ class ConnectByPass(object):
             print('download file failure! ')
         finally:
             tran.close()
+
