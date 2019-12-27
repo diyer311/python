@@ -1,10 +1,11 @@
 挖矿  
-curl -X GET "http://192.168.0.1:5000/mine"
+`curl -X GET "http://192.168.0.1:5000/mine"`
 
 获取链信息  
-curl -X GET "http://192.168.0.1:5000/chain"
+`curl -X GET "http://192.168.0.1:5000/chain"`
 
 新增一个交易  
+```
 curl -X POST "http://192.168.0.1:5000/transactions/new" -H "Content-Type: application/json" -d'
 {
   "sender": "abcdefg",
@@ -12,6 +13,7 @@ curl -X POST "http://192.168.0.1:5000/transactions/new" -H "Content-Type: applic
   "amount": 5
 }
 '
+```
 
 注册一个新的节点  
 curl -X POST "http://192.168.0.1:5000/nodes/register" -H "Content-Type: application/json" -d'
