@@ -1,3 +1,8 @@
+运行环境：Python 3.7  
+所需包：requests、Flask  
+\
+\
+\
 获取链信息  
 `curl -X GET "http://192.168.0.1:5000/chain"`
 \
