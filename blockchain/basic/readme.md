@@ -9,7 +9,7 @@
 \
 \
 新增一个交易  
-```shell
+```
 curl -X POST "http://192.168.0.1:5000/transactions/new" -H "Content-Type: application/json" -d'
 {
   "sender": "abcdefg",
