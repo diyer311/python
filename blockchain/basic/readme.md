@@ -1,6 +1,7 @@
 挖矿  
 `curl -X GET "http://192.168.0.1:5000/mine"`
 \
+\
 获取链信息  
 `curl -X GET "http://192.168.0.1:5000/chain"`
 
