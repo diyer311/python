@@ -1,7 +1,10 @@
-获取链信息
-curl -X GET "http://192.168.0.1:5000/chain"
-
-新增一条记录
+获取链信息  
+`curl -X GET "http://192.168.0.1:5000/chain"`
+\
+\
+\
+新增一条记录  
+```
 curl -X POST "http://192.168.0.1:5000/record/new" -H "Content-Type: application/json" -d'
 {
   "name": "张三",
@@ -17,13 +20,19 @@ curl -X POST "http://192.168.0.1:5000/record/new" -H "Content-Type: application/
   "contact": "李四"
 }
 '
-
-注册一个新的节点
+```
+\
+\
+注册一个新的节点  
+```
 curl -X POST "http://192.168.0.1:5000/nodes/register" -H "Content-Type: application/json" -d'
 {
   "nodes": ["http://192.168.0.2:5000"]
 }
 '
+```
+\
+\
+对该节点的权威性进行校验  
+`curl -X GET "http://192.168.0.1:5000/nodes/resolve"`
 
-对该节点的权威性进行校验
-curl -X GET "http://192.168.0.1:5000/nodes/resolve"
