@@ -31,3 +31,4 @@ curl -X POST "http://192.168.0.1:5000/nodes/register" -H "Content-Type: applicat
 
 参考博文链接如下：  
 https://learnblockchain.cn/2017/10/27/build_blockchain_by_python
+
