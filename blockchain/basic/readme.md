@@ -4,7 +4,7 @@
 获取链信息  
 `curl -X GET "http://192.168.0.1:5000/chain"`
 
-新增一个交易  
+新增一个交易
 ```
 curl -X POST "http://192.168.0.1:5000/transactions/new" -H "Content-Type: application/json" -d'
 {
