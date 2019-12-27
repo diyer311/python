@@ -121,4 +121,3 @@ class Connect(object):
             print('download file failure! ')
         finally:
             ftp.quit()
-
