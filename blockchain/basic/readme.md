@@ -5,8 +5,7 @@
 `curl -X GET "http://192.168.0.1:5000/chain"`
 
 新增一个交易  
-```
-curl -X POST "http://192.168.0.1:5000/transactions/new" -H "Content-Type: application/json" -d'
+```curl -X POST "http://192.168.0.1:5000/transactions/new" -H "Content-Type: application/json" -d'
 {
   "sender": "abcdefg",
   "recipient": "1234567",
@@ -16,14 +15,15 @@ curl -X POST "http://192.168.0.1:5000/transactions/new" -H "Content-Type: applic
 ```
 
 注册一个新的节点  
-curl -X POST "http://192.168.0.1:5000/nodes/register" -H "Content-Type: application/json" -d'
+```curl -X POST "http://192.168.0.1:5000/nodes/register" -H "Content-Type: application/json" -d'
 {
   "nodes": ["http://192.168.0.1:5001"]
 }
 '
+```
 
 对该节点的权威性进行校验  
-curl -X GET "http://192.168.0.1:5000/nodes/resolve"
+`curl -X GET "http://192.168.0.1:5000/nodes/resolve"`
 
 
 
