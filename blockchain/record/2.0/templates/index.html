@@ -41,9 +41,9 @@
                 <tr><td align="center" colspan="2"><input type="submit" value="添加链" style="margin-top: 10px"/></td></tr>
             </table>
         </form>
-        <button onclick="window.open('http://127.0.0.1:5000/chain')" style="margin-left: 5px; margin-top: 10px">查看链</button>
+        <button onclick="window.open('{{ url_for("view_chain") }}')" style="margin-left: 5px; margin-top: 10px">查看链</button>
         <br/>
-        <button onclick="window.open('http://127.0.0.1:5000/nodes')" style="margin-top: 15px">查看其它节点</button>
+        <button onclick="window.open('{{ url_for("view_nodes") }}')" style="margin-top: 15px">查看其它节点</button>
     </div>
 </body>
 </html>
