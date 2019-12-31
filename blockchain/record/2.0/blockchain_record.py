@@ -14,7 +14,7 @@ from pathlib import Path
 from urllib.parse import urlparse
 from flask import Flask, jsonify, request, render_template
 
-host = '127.0.0.1'
+host = '192.168.0.1'
 port = 5000
 data_file = Path(__file__).parent.joinpath('data.json')
 node_file = Path(__file__).parent.joinpath('node.json')
