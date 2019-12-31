@@ -40,4 +40,3 @@ curl -X POST "http://192.168.0.1:5000/nodes/register" -H "Content-Type: applicat
 \
 对该节点的权威性进行校验  
 `curl -X GET "http://192.168.0.1:5000/nodes/resolve"`
-
