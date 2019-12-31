@@ -359,4 +359,3 @@ if __name__ == '__main__':
                 blockchain.nodes = json.load(f)
 
     app.run(host, port)
-
