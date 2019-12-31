@@ -1,5 +1,5 @@
-运行环境：Python 3.7  
-所需包：requests、Flask  
+运行环境：Python 3.7.0  
+所需包：requests 2.21.0、Flask 1.1.1  
 \
 \
 \
