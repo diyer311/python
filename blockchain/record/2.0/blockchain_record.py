@@ -118,8 +118,8 @@ class Blockchain(object):
         """
 
         parsed_url = urlparse(address)
-        host = parsed_url.netloc
-        self.nodes.append(host)
+        host_port = parsed_url.netloc
+        self.nodes.append(host_port)
         self.nodes = list(set(self.nodes))
 
     def valid_chain(self, chain):
@@ -185,7 +185,7 @@ blockchain = Blockchain()
 def web_page():
     if request.method == 'POST':
         name = request.form['name']
-        type = request.form['type']
+        form = request.form['type']
         scope = request.form['scope']
         detail = request.form['detail']
         region = request.form['region']
@@ -200,7 +200,7 @@ def web_page():
         headers = {"Content-Type": "application/json"}
         data = json.dumps(
             {"name": name,
-             "type": type,
+             "type": form,
              "scope": scope,
              "detail": detail,
              "region": region,
@@ -219,6 +219,7 @@ def web_page():
             message = 'record failure'
             return render_template('index.html', message=message)
     return render_template('index.html')
+
 
 @app.route('/record/new', methods=['POST'])
 def new_records():
@@ -243,10 +244,10 @@ def new_records():
         latest_block = blockchain.last_block
         latest_proof = latest_block['proof']
         proof = blockchain.proof_of_work(latest_proof)
-        block = blockchain.new_block(proof)
+        blockchain.new_block(proof)
 
-        with open(data_file, 'w') as f:
-            json.dump(blockchain.chain, f, ensure_ascii=False)
+        with open(data_file, 'w') as file:
+            json.dump(blockchain.chain, file, ensure_ascii=False)
 
         local_length = len(blockchain.chain)
         if Path(node_file).stat().st_size != 0:
@@ -274,6 +275,7 @@ def new_records():
 
         return jsonify(response), 201
 
+
 @app.route('/chain', methods=['GET'])
 def view_chain():
     response = {
@@ -283,6 +285,7 @@ def view_chain():
 
     return jsonify(response), 200
 
+
 @app.route('/nodes', methods=['GET'])
 def view_nodes():
     response = {
@@ -290,6 +293,7 @@ def view_nodes():
     }
 
     return jsonify(response), 200
+
 
 @app.route('/nodes/register', methods=['POST'])
 def register_nodes():
@@ -304,14 +308,14 @@ def register_nodes():
         if check.status_code == 200:
             blockchain.register_node(node)
 
-    with open(node_file, 'w') as f:
-        json.dump(blockchain.nodes, f)
+    with open(node_file, 'w') as file:
+        json.dump(blockchain.nodes, file)
 
     update = blockchain.resolve_conflicts()
 
     if update:
-        with open(data_file, 'w') as f:
-            json.dump(blockchain.chain, f, ensure_ascii=False)
+        with open(data_file, 'w') as file:
+            json.dump(blockchain.chain, file, ensure_ascii=False)
         response = {
             'message': 'New nodes have been added and our chain was replaced',
             'total_nodes': blockchain.nodes
@@ -323,6 +327,7 @@ def register_nodes():
         }
 
     return jsonify(response), 201
+
 
 @app.route('/nodes/resolve', methods=['GET'])
 def consensus_check():
