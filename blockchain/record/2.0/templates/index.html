@@ -6,9 +6,9 @@
     <script type="text/javascript">
         function check()
         {
-            for (var i=0;i<document.form.elements.length-1;i++)
+            for (let i=0; i<document.form.elements.length-1; i++)
             {
-                if (document.form.elements[i].value=="")
+                if (document.form.elements[i].value==="")
                 {
                     alert("当前表单不能有空项");
                     document.form.elements[i].focus();
@@ -20,25 +20,47 @@
     </script>
 </head>
 <body>
-    <div align="center">
+    <div style="text-align: center">
         <h1>技术支持登记</h1>
         {% if message %}
             <p style="color: blue">{{ message }}</p>
         {% endif %}
         <form name="form" method="post" onSubmit="return check()">
-            <table align="center">
-                <tr><td align="right">人员：</td><td><input type="text" placeholder="name" name="name"></td></tr>
-                <tr><td align="right">支持类型：</td><td><input type="text" placeholder="type" name="type"></td></tr>
-                <tr><td align="right">技术范畴：</td><td><input type="text" placeholder="scope" name="scope"></td></tr>
-                <tr><td align="right">支持详情：</td><td><input type="text" placeholder="detail" name="detail"></td></tr>
-                <tr><td align="right">地区：</td><td><input type="text" placeholder="region" name="region"></td></tr>
-                <tr><td align="right">标签：</td><td><input type="text" placeholder="tag" name="tag"></td></tr>
-                <tr><td align="right">开始时间：</td><td><input type="text" placeholder="time" name="time"></td></tr>
-                <tr><td align="right">时长：</td><td><input type="text" placeholder="duration" name="duration"></td></tr>
-                <tr><td align="right">产品：</td><td><input type="text" placeholder="product" name="product"></td></tr>
-                <tr><td align="right">部门：</td><td><input type="text" placeholder="department" name="department"></td></tr>
-                <tr><td align="right">联系人：</td><td><input type="text" placeholder="contact" name="contact"></td></tr>
-                <tr><td align="center" colspan="2"><input type="submit" value="添加链" style="margin-top: 10px"/></td></tr>
+            <table style="margin: auto">
+                <tr><td style="text-align: right">人员：</td><td><label>
+                    <input type="text" placeholder="name" name="name">
+                </label></td></tr>
+                <tr><td style="text-align: right">支持类型：</td><td><label>
+                    <input type="text" placeholder="type" name="type">
+                </label></td></tr>
+                <tr><td style="text-align: right">技术范畴：</td><td><label>
+                    <input type="text" placeholder="scope" name="scope">
+                </label></td></tr>
+                <tr><td style="text-align: right">支持详情：</td><td><label>
+                    <input type="text" placeholder="detail" name="detail">
+                </label></td></tr>
+                <tr><td style="text-align: right">地区：</td><td><label>
+                    <input type="text" placeholder="region" name="region">
+                </label></td></tr>
+                <tr><td style="text-align: right">标签：</td><td><label>
+                    <input type="text" placeholder="tag" name="tag">
+                </label></td></tr>
+                <tr><td style="text-align: right">开始时间：</td><td><label>
+                    <input type="text" placeholder="time" name="time">
+                </label></td></tr>
+                <tr><td style="text-align: right">时长：</td><td><label>
+                    <input type="text" placeholder="duration" name="duration">
+                </label></td></tr>
+                <tr><td style="text-align: right">产品：</td><td><label>
+                    <input type="text" placeholder="product" name="product">
+                </label></td></tr>
+                <tr><td style="text-align: right">部门：</td><td><label>
+                    <input type="text" placeholder="department" name="department">
+                </label></td></tr>
+                <tr><td style="text-align: right">联系人：</td><td><label>
+                    <input type="text" placeholder="contact" name="contact">
+                </label></td></tr>
+                <tr><td colspan="2"><input type="submit" value="添加链" style="margin-top: 10px"/></td></tr>
             </table>
         </form>
         <button onclick="window.open('{{ url_for("view_chain") }}')" style="margin-left: 5px; margin-top: 10px">查看链</button>
@@ -47,4 +69,3 @@
     </div>
 </body>
 </html>
-
