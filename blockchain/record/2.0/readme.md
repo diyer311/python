@@ -23,7 +23,7 @@ web页面地址(可以进行添加链、查看链、查看其它节点操作)
 curl -X POST "http://192.168.0.1:5000/record/new" -H "Content-Type: application/json" -d'
 {
   "name": "张三",
-  "type": "远程支持",
+  "manner": "远程支持",
   "scope": "数据库",
   "detail": "解决数据库启动异常问题",
   "region": "宁波",
