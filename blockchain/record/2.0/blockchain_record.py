@@ -55,7 +55,7 @@ class Blockchain(object):
 
         self.current_record.append({
             'name': kwargs['name'],
-            'type': kwargs['type'],
+            'manner': kwargs['manner'],
             'scope': kwargs['scope'],
             'detail': kwargs['detail'],
             'region': kwargs['region'],
@@ -185,7 +185,7 @@ blockchain = Blockchain()
 def web_page():
     if request.method == 'POST':
         name = request.form['name']
-        form = request.form['type']
+        manner = request.form['manner']
         scope = request.form['scope']
         detail = request.form['detail']
         region = request.form['region']
@@ -200,7 +200,7 @@ def web_page():
         headers = {"Content-Type": "application/json"}
         data = json.dumps(
             {"name": name,
-             "type": form,
+             "manner": manner,
              "scope": scope,
              "detail": detail,
              "region": region,
@@ -230,13 +230,13 @@ def new_records():
             requests.get(f'http://{node}/chain')
     else:
         values = request.get_json()
-        required = ['name', 'type', 'scope', 'detail', 'region', 'tag', 'time', 
+        required = ['name', 'manner', 'scope', 'detail', 'region', 'tag', 'time', 
                     'duration', 'product', 'department', 'contact']
         if not all(k in values for k in required):
             return 'Missing values', 400
 
         index = blockchain.new_record(
-            name=values['name'], type=values['type'], scope=values['scope'], 
+            name=values['name'], manner=values['manner'], scope=values['scope'], 
             detail=values['detail'], region=values['region'], tag=values['tag'], 
             time=values['time'], duration=values['duration'], product=values['product'], 
             department=values['department'], contact=values['contact'])
@@ -259,7 +259,7 @@ def new_records():
                     headers = {"Content-Type": "application/json"}
                     data = json.dumps(
                         {"name": values['name'],
-                         "type": values['type'],
+                         "manner": values['manner'],
                          "scope": values['scope'],
                          "detail": values['detail'],
                          "region": values['region'],
@@ -364,4 +364,3 @@ if __name__ == '__main__':
                 blockchain.nodes = json.load(f)
 
     app.run(host, port)
-
