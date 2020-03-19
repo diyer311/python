@@ -1,8 +1,8 @@
 #!/usr/bin/env python
 
 """
-__version__ = '1.0.0'
-__date__ = '2020-01-01'
+__version__ = '3.0.0'
+__date__ = '2020-03-07'
 __author__ = 'Ding Yi, <dingyi@dingyix.com>'
 """
 
