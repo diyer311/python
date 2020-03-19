@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="technical support record">
+        <meta name="author" content="dingyi">
+        <link rel="icon" href="{{ url_for('static', filename='images/favicon.ico') }}">
+        <title>blockchain</title>
+        {% block css %}
+            <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+        {% endblock %}
+        {% block js %}
+            <script src="{{ url_for('static', filename='js/jquery.min.js') }}"></script>
+            <script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
+        {% endblock %}
+    </head>
+    <body style="padding-top: 75px">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="alert alert-{{ category }}" style="text-align: center; width: 500px; margin: 0 auto">
+                        <button aria-hidden="true" data-dismiss="alert" class="close" type="button">&times;</button>
+                        <strong>{{ message }}</strong>
+                    </div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+        {% block content %}
+        {% endblock %}
+        {% include "footer.html" %}
+    </body>
+</html>
